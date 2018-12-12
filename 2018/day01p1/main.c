@@ -7,7 +7,6 @@ int main()
   FILE *fd = fopen("input.txt", "r");
   if (fd == NULL) {
     printf("Failed to open input.txt");
-    fclose(fd);
     return 1;
   }
 
