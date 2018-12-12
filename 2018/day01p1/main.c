@@ -20,28 +20,17 @@ int main()
     }
 
     int i;
-    char signal;
-    int err = sscanf(line, "%c%d\n", &signal, &i);
+    int err = sscanf(line, "%d\n", &i);
     if (err < 0) {
       printf("Failed to read line: %s", line);
-      goto fail;
+      fclose(fd);
+      free(line);
+      return 1;
     }
 
-    if (signal == '+') {
-      sum += i;
-    } else if (signal == '-') {
-      sum -= i;
-    } else {
-      printf("Unexpected signal %c", signal);
-      goto fail;
-    }
+    sum += i;
   }
 
   printf("%d\n", sum);
   return 0;
-
-fail:
-  fclose(fd);
-  free(line);
-  return 1;
 }
