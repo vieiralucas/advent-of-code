@@ -1,10 +1,7 @@
 import qualified Data.Set as S
 
-circular :: [a] -> [a]
-circular xs = xs ++ circular xs
-
 parse :: String -> [Integer]
-parse = circular . map parseLine . lines
+parse = cycle . map parseLine . lines
   where
     parseLine ('+' : x) = read x
     parseLine x = read x
